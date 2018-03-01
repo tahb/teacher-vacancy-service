@@ -19,7 +19,6 @@ ENV RACK_ENV=${RAILS_ENV:-production}
 COPY Gemfile $INSTALL_PATH/Gemfile
 COPY Gemfile.lock $INSTALL_PATH/Gemfile.lock
 
-RUN bundle install --without development test
 COPY . $INSTALL_PATH
 
 RUN bundle exec rake --quiet assets:precompile
