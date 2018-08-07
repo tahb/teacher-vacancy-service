@@ -12,9 +12,10 @@ en:
     title: 'Teaching Jobs'
     menu: 'Menu'
   nav:
-    sign_in: 'List a teaching job at your school'
+    sign_in: 'Sign in to list a job'
     sign_out: 'Sign out'
-    school_page_link: 'My jobs'
+    school_page_link: 'Manage jobs'
+    jobseekers_index_link: 'View public jobs'
   sign_in:
     title: 'Sign in to Teaching Jobs'
     intro: 'While we are rolling out this service we need to know which area your school is in so that you can sign into the service.'
