@@ -267,3 +267,19 @@ en:
   beta_banner:
     line_1: 'This service is in development and lists teaching jobs in select areas, currently Cambridgeshire and the North East. When the service launches nationally it will list roles throughout England.'
     line_2: 'The summer holidays aren’t a peak period in the teacher recruitment cycle, but it’s still worth checking back soon for new opportunities.'
+
+  statistics:
+    dfe-sign-in:
+      authentication:
+        success: 'Successful authentications'
+      authorisation:
+        success: 'Successful authorisations'
+        select_school: 'Select school'
+        failure: 'Authorisation failures'
+    school:
+      update: 'Updates to school info'
+    vacancy:
+      create: 'Created vacancies'
+      delete: 'Deleted vacancies'
+      publish: 'Published vacancies'
+      update: 'Updated vacancies'

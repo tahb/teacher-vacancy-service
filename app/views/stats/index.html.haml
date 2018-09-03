@@ -2,12 +2,9 @@
 
 .grid-row
   .column-two-thirds
-    %h1.heading-large
+    %h1.heading-xlarge
       Statistics
 
 .grid-row
-  .column-two-thirds
-    %ul
-      - @audit_summary.each do |key, value|
-        %li
-          #{key}: #{value}
+  - @audit_summary.each do |key, value|
+    = render partial: 'stat', locals: { key: key, value: value }

@@ -8,9 +8,41 @@ RSpec.feature 'Application statistics' do
     4.times { Auditor::Audit.new(job, 'vacancy.update', 'sample-id').log }
 
     visit stats_path
-    expect(page).to have_content('dfe-sign-in.authorisation.failure: 2')
-    expect(page).to have_content('dfe-sign-in.authentication.success: 5')
-    expect(page).to have_content('vacancy.publish: 1')
-    expect(page).to have_content('vacancy.update: 4')
+
+    within(".data[data-key='dfe-sign-in.authentication.success'] .data-item.bold-xxlarge") do
+      expect(page).to have_content('5')
+    end
+    within(".data[data-key='dfe-sign-in.authentication.success'] .data-item.bold-xsmall") do
+      expect(page).to have_content(
+        I18n.t('statistics.dfe-sign-in.authentication.success', default: 'dfe-sign-in.authentication.success')
+      )
+    end
+
+    within(".data[data-key='dfe-sign-in.authorisation.failure'] .data-item.bold-xxlarge") do
+      expect(page).to have_content('2')
+    end
+    within(".data[data-key='dfe-sign-in.authorisation.failure'] .data-item.bold-xsmall") do
+      expect(page).to have_content(
+        I18n.t('statistics.dfe-sign-in.authorisation.failure', default: 'dfe-sign-in.authorisation.failure')
+      )
+    end
+
+    within(".data[data-key='vacancy.publish'] .data-item.bold-xxlarge") do
+      expect(page).to have_content('1')
+    end
+    within(".data[data-key='vacancy.publish'] .data-item.bold-xsmall") do
+      expect(page).to have_content(
+        I18n.t('statistics.vacancy.publish', default: 'vacancy.publish')
+      )
+    end
+
+    within(".data[data-key='vacancy.update'] .data-item.bold-xxlarge") do
+      expect(page).to have_content('4')
+    end
+    within(".data[data-key='vacancy.update'] .data-item.bold-xsmall") do
+      expect(page).to have_content(
+        I18n.t('statistics.vacancy.update', default: 'vacancy.update')
+      )
+    end
   end
 end
