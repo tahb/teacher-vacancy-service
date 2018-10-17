@@ -3,10 +3,22 @@ RSpec.describe JobSpecificationForm, type: :model do
   subject { JobSpecificationForm.new({}) }
 
   context 'validations' do
-    it { should validate_presence_of(:job_title) }
-    it { should validate_presence_of(:job_description) }
-    it { should validate_presence_of(:minimum_salary) }
-    it { should validate_presence_of(:working_pattern) }
+    it {
+      should validate_presence_of(:job_title)
+        .with_message(I18n.t('activerecord.errors.models.vacancy.attributes.job_title.blank'))
+    }
+    it {
+      should validate_presence_of(:job_description)
+        .with_message(I18n.t('activerecord.errors.models.vacancy.attributes.job_description.blank'))
+    }
+    it {
+      should validate_presence_of(:minimum_salary)
+        .with_message(I18n.t('errors.messages.salary.blank'))
+    }
+    it {
+      should validate_presence_of(:working_pattern)
+        .with_message(I18n.t('activerecord.errors.models.vacancy.attributes.working_pattern.blank'))
+    }
 
     describe '#maximum_salary' do
       let(:job_specification) do

@@ -40,7 +40,7 @@ class SalaryValidator < ActiveModel::EachValidator
   end
 
   def cant_be_blank_message
-    I18n.t('errors.messages.blank')
+    I18n.t('errors.messages.salary.blank')
   end
 
   def invalid_format_message

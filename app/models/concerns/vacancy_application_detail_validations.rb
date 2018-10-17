@@ -4,10 +4,20 @@ module VacancyApplicationDetailValidations
   included do
     validates :contact_email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i },
                               if: proc { |a| a.contact_email.present? }
-    validates :application_link, :contact_email, :expires_on, presence: true
+    validates :application_link, presence: {
+      message: I18n.t('activerecord.errors.models.vacancy.attributes.application_link.blank')
+    }
     validates :application_link, url: true, if: proc { |v| v.application_link.present? }
 
-    validates :publish_on, presence: true, if: proc { |v| !v.published? }
+    validates :contact_email, presence: {
+      message: I18n.t('activerecord.errors.models.vacancy.attributes.contact_email.blank')
+    }
+    validates :expires_on, presence: {
+      message: I18n.t('activerecord.errors.models.vacancy.attributes.expires_on.blank')
+    }
+    validates :publish_on, presence: {
+      message: I18n.t('activerecord.errors.models.vacancy.attributes.publish_on.blank')
+    }, if: proc { |v| !v.published? }
     validate :validity_of_publish_on, :validity_of_expires_on
   end
 

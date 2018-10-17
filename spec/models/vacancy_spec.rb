@@ -126,7 +126,7 @@ RSpec.describe Vacancy, type: :model do
         job = build(:vacancy, minimum_salary: nil, maximum_salary: nil)
 
         expect(job.valid?).to be false
-        expect(job.errors.messages[:minimum_salary]).to eq(['can\'t be blank'])
+        expect(job.errors.messages[:minimum_salary]).to eq([I18n.t('errors.messages.salary.blank')])
         expect(job.errors.messages[:maximum_salary]).to be_empty
       end
 
@@ -134,7 +134,7 @@ RSpec.describe Vacancy, type: :model do
         job = build(:vacancy, minimum_salary: nil, maximum_salary: 'not a number')
 
         expect(job.valid?).to be false
-        expect(job.errors.messages[:minimum_salary]).to eq(['can\'t be blank'])
+        expect(job.errors.messages[:minimum_salary]).to eq([I18n.t('errors.messages.salary.blank')])
         expect(job.errors.messages[:maximum_salary]).to be_empty
       end
 

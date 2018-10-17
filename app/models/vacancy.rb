@@ -82,6 +82,7 @@ class Vacancy < ApplicationRecord
 
   def coordinates
     return if school_geolocation.nil?
+
     {
       lat: school_geolocation.x.to_f,
       lon: school_geolocation.y.to_f

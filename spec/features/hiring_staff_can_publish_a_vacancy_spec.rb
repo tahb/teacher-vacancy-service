@@ -245,7 +245,7 @@ RSpec.feature 'Creating a vacancy' do
           fill_in 'job_specification_form[job_title]', with: ''
           click_on 'Save and continue'
 
-          expect(page).to have_content('Job title can\'t be blank')
+          expect(page).to have_content(I18n.t('activerecord.errors.models.vacancy.attributes.job_title.blank'))
 
           fill_in 'job_specification_form[job_title]', with: 'A new job title'
           click_on 'Save and continue'
@@ -294,7 +294,7 @@ RSpec.feature 'Creating a vacancy' do
           fill_in 'candidate_specification_form[education]', with: ''
           click_on 'Save and continue'
 
-          expect(page).to have_content('Education can\'t be blank')
+          expect(page).to have_content(I18n.t('activerecord.errors.models.vacancy.attributes.education.blank'))
 
           fill_in 'candidate_specification_form[education]', with: 'essential requirements'
           click_on 'Save and continue'

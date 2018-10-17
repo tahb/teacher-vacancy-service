@@ -10,6 +10,7 @@ en:
       taken: has already been taken
       blank: can't be blank
       salary:
+        blank: must be completed
         invalid_format: 'must be entered in one of the following formats: 25000 or 25000.00'
         lower_than_minimum_payscale: 'must be at least %{minimum_salary}'
   activerecord:
@@ -18,28 +19,30 @@ en:
         vacancy:
           attributes:
             job_title:
-              blank: can't be blank
+              blank: must be completed
             job_description:
-              blank: can't be blank
+              blank: must be completed
             minimum_salary:
-              blank: can't be blank
+              blank: must be completed
             maximum_salary:
               greater_than_minimum_salary: must be higher than the minimum salary
             working_pattern:
-              blank: can't be blank
+              blank: must be selected
             experience:
-              blank: can't be blank
+              blank: must be completed
             education:
-              blank: can't be blank
+              blank: must be completed
             qualifications:
-              blank: can't be blank
+              blank: must be completed
             contact_email:
-              blank: can't be blank
+              blank: must be completed
+            application_link:
+              blank: must be completed
             expires_on:
-              blank: can't be blank
+              blank: must be completed
               before_publish_date: can't be before the publish date
             publish_on:
-              blank: can't be blank
+              blank: must be completed
               before_today: can't be before today
             starts_on:
               past: can't be in the past
@@ -53,3 +56,7 @@ en:
           attributes:
             task:
               taken: must have a unique entry for a date
+        feedback:
+          attributes:
+            rating:
+              blank: must have a value

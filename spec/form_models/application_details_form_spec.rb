@@ -4,9 +4,18 @@ RSpec.describe ApplicationDetailsForm, type: :model do
   subject { ApplicationDetailsForm.new({}) }
 
   context 'validations' do
-    it { should validate_presence_of(:contact_email) }
-    it { should validate_presence_of(:publish_on) }
-    it { should validate_presence_of(:expires_on) }
+    it {
+      should validate_presence_of(:contact_email)
+        .with_message(I18n.t('activerecord.errors.models.vacancy.attributes.contact_email.blank'))
+    }
+    it {
+      should validate_presence_of(:publish_on)
+        .with_message(I18n.t('activerecord.errors.models.vacancy.attributes.publish_on.blank'))
+    }
+    it {
+      should validate_presence_of(:expires_on)
+        .with_message(I18n.t('activerecord.errors.models.vacancy.attributes.expires_on.blank'))
+    }
 
     describe '#application_link' do
       let(:application_details) { ApplicationDetailsForm.new(application_link: 'not a url') }

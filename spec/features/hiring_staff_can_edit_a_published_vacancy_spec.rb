@@ -45,7 +45,7 @@ RSpec.feature 'Hiring staff can edit a vacancy' do
         fill_in 'job_specification_form[job_title]', with: ''
         click_on 'Update job'
 
-        expect(page).to have_content('Job title can\'t be blank')
+        expect(page).to have_content(I18n.t('activerecord.errors.models.vacancy.attributes.job_title.blank'))
       end
 
       scenario 'can be succesfuly edited' do
@@ -117,7 +117,7 @@ RSpec.feature 'Hiring staff can edit a vacancy' do
         click_on 'Update job'
 
         within_row_for(text: I18n.t('jobs.experience')) do
-          expect(page).to have_content('can\'t be blank')
+          expect(page).to have_content(I18n.t('activerecord.errors.models.vacancy.attributes.experience.blank'))
         end
       end
 

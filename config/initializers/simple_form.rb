@@ -45,7 +45,7 @@ SimpleForm.setup do |config|
     ## Inputs
     b.use :label, class: 'govuk-label govuk-label'
     b.use :hint, wrap_with: { tag: 'div', class: 'govuk-hint' }
-    b.use :error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
+    b.use :full_error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
     b.use :input, class: 'govuk-input'
 
     ## full_messages_for
@@ -102,7 +102,7 @@ SimpleForm.setup do |config|
                              error_class: 'govuk-form-group--error' do |field|
     field.use :label, wrap_with: { tag: 'span', class: 'govuk-label govuk-label' }
     field.use :hint, wrap_with: { tag: 'div', class: 'govuk-hint' }
-    field.use :error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
+    field.use :full_error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
     field.use :input, as: :select, class: 'govuk-select'
   end
 
@@ -111,7 +111,7 @@ SimpleForm.setup do |config|
                              error_class: 'govuk-form-group--error' do |field|
     field.use :label, wrap_with: { tag: 'span', class: 'govuk-label govuk-label' }
     field.use :hint, wrap_with: { tag: 'div', class: 'govuk-hint' }
-    field.use :error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
+    field.use :full_error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
     field.use :input, as: :text, class: 'govuk-textarea'
   end
 
@@ -124,7 +124,7 @@ SimpleForm.setup do |config|
       field.use :label_text, wrap_with: { tag: 'label', class: 'govuk-label govuk-label govuk-checkboxes__label' }
     end
 
-    checkbox.use :error, :wrap_with => { :tag => 'div', :class => 'help-inline' }
+    checkbox.use :full_error, :wrap_with => { :tag => 'div', :class => 'help-inline' }
     checkbox.use :hint,  :wrap_with => { :tag => 'div', :class => 'govuk-hint' }
   end
 
@@ -133,7 +133,7 @@ SimpleForm.setup do |config|
                                 error_class: 'govuk-form-group--error' do |field|
     field.use :html5
     field.use :hint,  wrap_with: { tag: 'div', class: 'govuk-hint' }
-    field.use :error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
+    field.use :full_error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
     field.use :label, wrap_with: { tag: 'span', class: 'pound_sign' }
     field.use :input, class: 'govuk-input', pattern: '\d*'
   end
