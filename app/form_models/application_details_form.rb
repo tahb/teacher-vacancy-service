@@ -6,7 +6,6 @@ class ApplicationDetailsForm < VacancyForm
   attr_accessor :original_publish_on
 
   include VacancyApplicationDetailValidations
-  include VacancyDateValidations
 
   def disable_editing_publish_on?
     published? && vacancy.reload.publish_on.past?

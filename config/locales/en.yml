@@ -113,7 +113,9 @@ en:
     no_pending_jobs: You currently have no pending jobs
     edit_link: Edit
     delete_link: Delete
+    duplicate_link: Duplicate
     are_you_sure: Are you sure you want to delete the '%{job_title}' job?
+    copy_of: Copy of
     confirmation_page:
       submitted: 'The job listing has been completed'
       page_title: 'The job listing for %{school} has been completed'
@@ -277,6 +279,7 @@ en:
   errors:
     jobs:
       unable_to_publish: We were unable to publish this job. Make sure that you have filled all mandatory fields
+      unable_to_copy: We were unable to create a copy of this job
     sign_in:
       unauthorised: You are not authorised to act on behalf of this school
       failure: An unexpected error occured. We have been notified.
