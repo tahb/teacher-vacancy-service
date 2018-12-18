@@ -244,6 +244,9 @@ en:
       confirmation:
         subheading: 'You have subscribed to email notifications for jobs that match the following search criteria:'
         expiry_text_html: Your subscription will expire in %{distance}, on the %{date}.
+      daily:
+        summary: "%{count} new jobs matching your search criteria were posted yesteday."
+        unsubscribe: Follow this link to unsubscribe.
   terms_and_conditions:
     page_title: 'Terms and Conditions'
     intro: 'Before listing any role at your school on Teaching Vacancies you must first read our Terms and Conditions and agree to abide by them.'

@@ -1,5 +1,7 @@
 require 'services/notify'
 class SubscriptionConfirmationEmail
+  include NotifyContentPresenter
+
   REFERENCE = 'subscription_confirmation'.freeze
 
   def initialize(subscription)
@@ -29,31 +31,20 @@ class SubscriptionConfirmationEmail
   end
 
   def body
-    @body = heading('Teaching Vacancies')
-    @body << heading(I18n.t('subscriptions.email.confirmation.subheading'))
+    @body = h2(I18n.t('app.title'))
+    @body << h2(I18n.t('subscriptions.email.confirmation.subheading'))
     search_criteria.each_pair do |key, value|
       @body << add_search_item(key, value)
     end
+    @body << br
     @body << add_line(I18n.t('subscriptions.email.confirmation.expiry_text_html', distance: '3 months',
                                                                                   date: I18n.l(expires_on)))
     @body
   end
 
-  def heading(text)
-    "# #{text}\n"
-  end
-
-  def add_line(text)
-    add_break << text << add_break
-  end
-
-  def add_break
-    "\n"
-  end
-
   def add_search_item(key, value)
     item = key.present? ? "#{key.titleize}: " : ''
-    item << "#{value}\n"
+    item << value << br
     item
   end
 end

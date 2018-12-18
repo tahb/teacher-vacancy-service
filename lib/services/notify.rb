@@ -1,4 +1,5 @@
 require 'notifications/client'
+require 'services/notify_content_presenter'
 
 class Notify
   def initialize(email, personalisation, template_id, reference)
