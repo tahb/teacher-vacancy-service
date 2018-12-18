@@ -1,19 +1,20 @@
 class MessageEncryptor
-  def initialize(data)
+  def initialize(data, parameters = {})
     @data = data
+    @parameters = parameters
   end
 
   def encrypt
-    data.is_a?(Array) ? encrypt_array : crypt.encrypt_and_sign(data)
+    data.is_a?(Array) ? encrypt_array : crypt.encrypt_and_sign(data, parameters)
   end
 
   def decrypt
-    data.is_a?(Array) ? decrypt_array : crypt.decrypt_and_verify(data)
+    data.is_a?(Array) ? decrypt_array : crypt.decrypt_and_verify(data, parameters)
   end
 
   private
 
-  attr_reader :data
+  attr_reader :data, :parameters
 
   def crypt
     @crypt ||= ActiveSupport::MessageEncryptor.new secret
@@ -26,10 +27,10 @@ class MessageEncryptor
   end
 
   def encrypt_array
-    data.map { |v| crypt.encrypt_and_sign(v) }
+    data.map { |v| crypt.encrypt_and_sign(v, parameters) }
   end
 
   def decrypt_array
-    data.map { |v| crypt.decrypt_and_verify(v) }
+    data.map { |v| crypt.decrypt_and_verify(v, parameters) }
   end
 end
