@@ -130,6 +130,7 @@ module "ecs" {
   google_analytics_profile_id      = "${var.google_analytics_profile_id}"
   notify_key                                = "${var.notify_key}"
   notify_subscription_confirmation_template = "${var.notify_subscription_confirmation_template}"
+  notify_subscription_daily_template = "${var.notify_subscription_daily_template}"
 }
 
 module "logs" {

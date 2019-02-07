@@ -162,6 +162,7 @@ data "template_file" "web_container_definition" {
     google_analytics_profile_id      = "${var.google_analytics_profile_id}"
     notify_key                       = "${var.notify_key}"
     notify_subscription_confirmation_template = "${var.notify_subscription_confirmation_template}"
+    notify_subscription_daily_template = "${var.notify_subscription_daily_template}"
   }
 }
 
@@ -363,7 +364,8 @@ data "template_file" "worker_container_definition" {
     google_drive_json_key            = "${replace(jsonencode(var.google_drive_json_key), "/([\"\\\\])/", "\\$1")}"
     notify_key                       = "${var.notify_key}"
     notify_subscription_confirmation_template = "${var.notify_subscription_confirmation_template}"
-
+    notify_subscription_daily_template = "${var.notify_subscription_daily_template}"
+    
     worker_command = "${jsonencode(var.worker_command)}"
   }
 }

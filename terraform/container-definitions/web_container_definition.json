@@ -149,6 +149,10 @@
       {
         "name": "NOTIFY_SUBSCRIPTION_CONFIRMATION_TEMPLATE",
         "value": "${notify_subscription_confirmation_template}"
+      },
+      {
+        "name": "NOTIFY_SUBSCRIPTION_DAILY_TEMPLATE",
+        "value": "${notify_subscription_daily_template}"
       }
     ]
   }

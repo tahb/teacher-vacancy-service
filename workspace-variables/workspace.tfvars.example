@@ -69,3 +69,4 @@ google_analytics_profile_id = ""
 
 notify_key = ''
 notify_subscription_confirmation_template = ''
+notify_subscription_daily_template = ''
