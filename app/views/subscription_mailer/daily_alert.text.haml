@@ -1,0 +1,14 @@
+\# #{t('app.title')}
+\# #{t('subscriptions.email.daily.summary', count: @vacancies.count)}
+\
+\---
+\
+- @vacancies.each do |vacancy|
+  [#{vacancy.job_title}](#{vacancy.share_url})
+  = vacancy.school_name
+  = "Salary: #{vacancy.salary_range}"
+  \---
+\
+Visit [#{t('app.title')}](https://teaching-vacancies.service.gov.uk)
+\
+[#{t('subscriptions.email.daily.unsubscribe')}]('https://placeholder')
