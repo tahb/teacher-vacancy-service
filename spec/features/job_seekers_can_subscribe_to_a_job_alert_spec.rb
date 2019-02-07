@@ -149,6 +149,9 @@ RSpec.feature 'A job seeker can subscribe to a job alert' do
       fill_in 'subscription[email]', with: 'john.doe@sample-email.com'
       fill_in 'subscription[reference]', with: 'Daily alerts for: English'
 
+      message_delivery = instance_double(ActionMailer::MessageDelivery)
+      expect(SubscriptionMailer).to receive(:confirmation) { message_delivery }
+      expect(message_delivery).to receive(:deliver_later)
       click_on 'Subscribe'
 
       expect(page).to have_content('Your email subscription has started')
@@ -157,8 +160,8 @@ RSpec.feature 'A job seeker can subscribe to a job alert' do
       expect(page).to have_content('3 jobs match your search')
 
       activities = PublicActivity::Activity.all
-      expect(activities.first.key).to eq('subscription.daily_alert.new')
-      expect(activities.last.key).to eq('subscription.daily_alert.create')
+      expect(activities[0].key).to eq('subscription.daily_alert.new')
+      expect(activities[1].key).to eq('subscription.daily_alert.create')
     end
   end
 end

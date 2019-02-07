@@ -55,6 +55,8 @@ gem 'high_voltage', '~> 3.1'
 gem 'google_drive', require: false
 gem 'google-api-client'
 gem 'browser'
+gem 'notifications-ruby-client'
+gem 'mail-notify'
 
 gem 'sidekiq'
 
