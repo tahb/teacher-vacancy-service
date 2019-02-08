@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_151520) do
+ActiveRecord::Schema.define(version: 2019_02_04_132335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -128,6 +128,16 @@ ActiveRecord::Schema.define(version: 2018_12_10_151520) do
     t.index ["name"], name: "index_subjects_on_name", unique: true
   end
 
+  create_table "subscription_alert_auditors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "subscription_id"
+    t.date "date"
+    t.integer "attempt", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_subscription_alert_auditors_on_subscription_id"
+  end
+
   create_table "subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.integer "frequency"
@@ -199,4 +209,5 @@ ActiveRecord::Schema.define(version: 2018_12_10_151520) do
   end
 
   add_foreign_key "schools", "detailed_school_types"
+  add_foreign_key "subscription_alert_auditors", "subscriptions"
 end

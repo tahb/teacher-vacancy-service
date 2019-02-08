@@ -9,6 +9,7 @@ class Subscription < ApplicationRecord
   scope :ongoing, -> { active.where('expires_on >= current_date') }
 
   before_save :set_reference
+  has_many :subscription_alert_auditors
 
   def search_criteria_to_h
     @search_criteria_hash = JSON.parse(search_criteria)
