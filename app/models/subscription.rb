@@ -11,6 +11,10 @@ class Subscription < ApplicationRecord
   before_save :set_reference
   has_many :subscription_alert_auditors
 
+  def sent_today?
+    subscription_alert_auditors.sent_today.present?
+  end
+
   def search_criteria_to_h
     @search_criteria_hash = JSON.parse(search_criteria)
   end

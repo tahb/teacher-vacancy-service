@@ -83,4 +83,20 @@ RSpec.describe Subscription, type: :model do
       expect(subscription.reference).to eq('A-reference')
     end
   end
+
+  describe 'sent_today?' do
+    let(:subscription) { create(:subscription, frequency: :daily) }
+
+    context 'when an alert has not been sent' do
+      it { expect(subscription.sent_today?).to eq(false) }
+    end
+
+    context 'when an alert has been sent' do
+      before do
+        create(:subscription_alert_auditor, subscription: subscription, date: Time.zone.today, status: :sent)
+      end
+
+      it { expect(subscription.sent_today?).to eq(true) }
+    end
+  end
 end
