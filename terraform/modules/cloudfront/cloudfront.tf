@@ -107,8 +107,8 @@ resource "aws_cloudfront_distribution" "default" {
     path_pattern = "/api/*"
 
     forwarded_values = {
-      query_string = false
-      headers      = ["Host"]
+      query_string = true
+      headers      = ["Host", "Authorization"]
 
       cookies {
         forward = "none"
