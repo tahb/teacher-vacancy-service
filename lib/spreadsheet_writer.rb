@@ -1,32 +1,18 @@
 require 'google_drive'
 module Spreadsheet
   class Writer
-    def initialize(spreadsheet_id, worksheet_pos = 0, use_gid = false)
+    def initialize(spreadsheet_id, worksheet_pos = 0)
       @spreadsheet_id = spreadsheet_id
       @worksheet_pos = worksheet_pos
-      @use_gid = use_gid
     end
 
-    def append_rows(rows)
-      pos = worksheet.num_rows
-      rows.each_with_index do |row, i|
-        append_row(row, pos + i, false)
-      end
-      worksheet.save
-    end
-
-    def append_row(row, last_pos = worksheet.num_rows, save = true)
+    def append(row)
+      last_pos = worksheet.num_rows
       pos = last_pos + 1
       row.each_with_index do |cell, index|
         worksheet[pos, index + 1] = cell
       end
-      worksheet.save if save
-    end
-
-    def last_row
-      return nil if worksheet.num_rows <= 1
-
-      worksheet[worksheet.num_rows - 1]
+      worksheet.save
     end
 
     private
@@ -40,13 +26,9 @@ module Spreadsheet
     end
 
     def worksheet
-      @worksheet ||= use_gid ? spreadsheet.worksheet_by_gid(worksheet_pos) : spreadsheet.worksheets[worksheet_pos]
+      @worksheet ||= session.spreadsheet_by_key(spreadsheet_id).worksheets[worksheet_pos]
     end
 
-    def spreadsheet
-      @spreadsheet ||= session.spreadsheet_by_key(spreadsheet_id)
-    end
-
-    attr_reader :spreadsheet_id, :worksheet_pos, :use_gid
+    attr_reader :spreadsheet_id, :worksheet_pos
   end
 end

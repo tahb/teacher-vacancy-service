@@ -97,10 +97,6 @@
         "value": "${audit_spreadsheet_id}"
       },
       {
-        "name": "AUDIT_VACANCIES_WORKSHEET_GID",
-        "value": "${audit_vacancies_worksheet_gid}"
-      },
-      {
         "name": "GOOGLE_DRIVE_JSON_KEY",
         "value": "${google_drive_json_key}"
       }
