@@ -18,6 +18,10 @@ class SubscriptionsController < ApplicationController
     elsif subscription.save
       Auditor::Audit.new(subscription, 'subscription.daily_alert.create', nil).log
       SubscriptionMailer.confirmation(subscription.id).deliver_later
+
+      # FOR USER TESTING ONLY
+      AlertMailer.daily_alert(subscription.id, Vacancy.all.sample(5).pluck(:id)).deliver_later(wait: 30.seconds)
+
       return render 'confirm'
     end
 
