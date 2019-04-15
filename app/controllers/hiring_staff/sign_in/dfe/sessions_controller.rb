@@ -11,15 +11,13 @@ class HiringStaff::SignIn::Dfe::SessionsController < HiringStaff::BaseController
   end
 
   def create
-    Rails.logger.warn("Hiring staff signed in: #{oid}")
+    Rails.logger.warn("Hiring staff signed in: #{user_id}")
+    audit_successful_authentication
 
-    permissions = TeacherVacancyAuthorisation::Permissions.new
-    permissions.authorise(identifier, selected_school_urn)
+    authorisation = Authorisation.new(organisation_id: organisation_id, user_id: user_id).call
 
-    log_succesful_authentication
-
-    if permissions.authorised?
-      update_session(permissions.school_urn, permissions)
+    if authorisation.authorised?
+      update_session
       redirect_to school_path
     else
       not_authorised
@@ -29,29 +27,34 @@ class HiringStaff::SignIn::Dfe::SessionsController < HiringStaff::BaseController
   private
 
   def not_authorised
-    log_failed_authorisation
-    @identifier = identifier
+    Rails.logger.warn("Hiring staff not authorised: #{user_id} for school: #{school_urn}")
+    audit_failed_authorisation
+    @identifier = email_address
     render 'user-not-authorised'
   end
 
-  def update_session(school_urn, permissions)
-    session.update(session_id: oid, urn: school_urn, multiple_schools: permissions.many?)
-    log_succesful_authorisation
+  def update_session
+    session.update(session_id: user_id, urn: school_urn)
+    audit_successful_authorisation
   end
 
   def auth_hash
     request.env['omniauth.auth']
   end
 
-  def oid
+  def user_id
     auth_hash['uid']
   end
 
-  def identifier
-    auth_hash['info']['email']
+  def organisation_id
+    auth_hash.dig('extra', 'raw_info', 'organisation', 'id')
   end
 
-  def selected_school_urn
+  def school_urn
     auth_hash.dig('extra', 'raw_info', 'organisation', 'urn') || ''
+  end
+
+  def email_address
+    auth_hash['info']['email']
   end
 end
