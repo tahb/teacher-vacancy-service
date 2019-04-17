@@ -162,6 +162,10 @@ module "ecs" {
   notify_subscription_daily_template = "${var.notify_subscription_daily_template}"
   feature_email_alerts                      = "${var.feature_email_alerts}"
   feature_import_vacancies                  = "${var.feature_import_vacancies}"
+  dfe_sign_in_url                       = "${var.dfe_sign_in_url}"
+  dfe_sign_in_password            = "${var.dfe_sign_in_password}"
+  dfe_sign_in_service_access_role_id = "${var.dfe_sign_in_service_access_role_id}"
+  dfe_sign_in_service_id = "${var.dfe_sign_in_service_id}"
 }
 
 module "logs" {

@@ -171,6 +171,10 @@ data "template_file" "web_container_definition" {
     subscription_key_generator_salt = "${var.subscription_key_generator_salt}"
     subscription_key_generator_secret = "${var.subscription_key_generator_secret}"
     feature_email_alerts              = "${var.feature_email_alerts}"
+    dfe_sign_in_url = "${var.dfe_sign_in_url}"
+    dfe_sign_in_password = "${var.dfe_sign_in_password}"
+    dfe_sign_in_service_access_role_id = "${var.dfe_sign_in_service_access_role_id}"
+    dfe_sign_in_service_id = "${var.dfe_sign_in_service_id}"
   }
 }
 
