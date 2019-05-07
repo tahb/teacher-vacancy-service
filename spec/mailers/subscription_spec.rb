@@ -34,16 +34,16 @@ RSpec.describe SubscriptionMailer, type: :mailer do
       expect(mail.to).to eq([subscription.email])
       expect(body_lines[0]).to match(/# #{I18n.t('app.title')}/)
       expect(body_lines[1]).to match(/# #{subscription.reference}/)
-      expect(body_lines[3]).to match(/#{I18n.t('subscriptions.email.confirmation.subheading')}/)
-      expect(body_lines[5]).to match(/\* Subject: English/)
-      expect(body_lines[6]).to match(/\* Minimum Salary: £20,000/)
-      expect(body_lines[7]).to match(/\* Maximum Salary: £40,000/)
-      expect(body_lines[8]).to match(/\Suitable for NQTs/)
-      expect(body_lines[10]).to match(/1 April 2019/)
+      expect(body_lines[5]).to match(/#{I18n.t('subscriptions.email.confirmation.subheading')}/)
+      expect(body_lines[7]).to match(/\* Subject: English/)
+      expect(body_lines[8]).to match(/\* Minimum Salary: £20,000/)
+      expect(body_lines[9]).to match(/\* Maximum Salary: £40,000/)
+      expect(body_lines[10]).to match(/\Suitable for NQTs/)
+      expect(body_lines[12]).to match(/1 April 2019/)
     end
 
     it 'has an unsubscribe link' do
-      expect(body_lines[12]).to match(%r{http:\/\/localhost:3000\/subscriptions\/#{subscription.token}\/unsubscribe})
+      expect(body_lines[14]).to match(%r{http:\/\/localhost:3000\/subscriptions\/#{subscription.token}\/unsubscribe})
     end
   end
 
@@ -55,9 +55,9 @@ RSpec.describe SubscriptionMailer, type: :mailer do
         I18n.t('job_alerts.expiry.email.first_warning.subject', reference: subscription.reference)
       )
       expect(mail.to).to eq([subscription.email])
-      expect(body_lines[0]).to match(/#{subscription.reference}/)
-      expect(body_lines[2]).to match(/#{I18n.t('job_alerts.expiry.email.first_warning.reset_instructions')}/)
-      expect(body_lines[4]).to match(%r{http:\/\/localhost:3000\/subscriptions\/#{subscription.token}\/renew})
+      expect(body_lines[5]).to match(/#{subscription.reference}/)
+      expect(body_lines[7]).to match(/#{I18n.t('job_alerts.expiry.email.first_warning.reset_instructions')}/)
+      expect(body_lines[9]).to match(%r{http:\/\/localhost:3000\/subscriptions\/#{subscription.token}\/renew})
     end
   end
 
@@ -69,8 +69,8 @@ RSpec.describe SubscriptionMailer, type: :mailer do
         I18n.t('job_alerts.expiry.email.final_warning.subject', reference: subscription.reference)
       )
       expect(mail.to).to eq([subscription.email])
-      expect(body_lines[0]).to match(/#{subscription.reference}/)
-      expect(body_lines[2]).to match(%r{http:\/\/localhost:3000\/subscriptions\/#{subscription.token}\/renew})
+      expect(body_lines[5]).to match(/#{subscription.reference}/)
+      expect(body_lines[7]).to match(%r{http:\/\/localhost:3000\/subscriptions\/#{subscription.token}\/renew})
     end
   end
 end
