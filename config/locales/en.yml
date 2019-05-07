@@ -279,11 +279,12 @@ en:
     location_text: Within %{radius} miles of %{location}
     reference: 'Your reference:'
     confirmation:
-      header: Your email subscription has started
+      header: You have subscribed to a job alert
       receipt_confirmation: We have sent you a confirmation email.
       next_step: 'What happens next'
-      unsubscribe: "You can unsubscribe from this subscription at any time by following the 'stop receiving emails for this search' link in the email."
-      next_step_details: 'We will run a search matching your search criteria and send a daily email with the results to %{email} for the next 6 months, until %{date}.'
+      next_step_details: 'You will be emailed details of any new jobs that match the following search criteria:'
+      continue: "You'll only be sent one job alert email per day, at the end of any day when 1 or more jobs match your criteria."
+      unsubscribe: This job alert subscription will end on %{date}. You can cancel it at any time using the link found at the bottom of job alert emails.
     deletion:
       title: Subscription deleted
       header: Your email subscription has been deleted

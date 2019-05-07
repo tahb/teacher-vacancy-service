@@ -21,6 +21,7 @@
               %span{ class: 'govuk-!-font-weight-bold'} #{filter.humanize}:
             = value
 
-    %p.govuk-body= t('subscriptions.confirmation.unsubscribe')
+    %p.govuk-body= t('subscriptions.confirmation.continue')
+    %p.govuk-body= t('subscriptions.confirmation.unsubscribe', date: @subscription.expires_on.to_s(:default))
     %p.govuk-body
       = link_to t('subscriptions.back_to_search_results'), root_path(@subscription.search_criteria_to_h), class: 'govuk-link'
