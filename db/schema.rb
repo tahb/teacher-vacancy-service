@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_121556) do
+ActiveRecord::Schema.define(version: 2019_05_09_102958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -209,6 +209,8 @@ ActiveRecord::Schema.define(version: 2019_04_15_121556) do
     t.uuid "second_supporting_subject_id"
     t.integer "total_get_more_info_clicks"
     t.datetime "total_get_more_info_clicks_updated_at"
+    t.integer "listed_elsewhere"
+    t.integer "hired_status"
     t.index ["expires_on"], name: "index_vacancies_on_expires_on"
     t.index ["first_supporting_subject_id"], name: "index_vacancies_on_first_supporting_subject_id"
     t.index ["leadership_id"], name: "index_vacancies_on_leadership_id"
