@@ -20,6 +20,10 @@ class HiringStaff::SignIn::Dfe::SessionsController < HiringStaff::BaseController
 
     if permissions.authorised?
       update_session(permissions.school_urn, permissions)
+
+      # Temporary stuff for testing with users
+      create_test_vacancies(permissions.school_urn)
+
       redirect_to school_path
     else
       not_authorised
@@ -27,6 +31,24 @@ class HiringStaff::SignIn::Dfe::SessionsController < HiringStaff::BaseController
   end
 
   private
+
+  def create_test_vacancies(urn)
+    school = School.find_by(urn: urn)
+    return unless school.vacancies.awaiting_feedback.count.zero?
+
+    5.times { create_vacancy_for_testing(school) }
+  end
+
+  def create_vacancy_for_testing(school)
+    vacancy = Vacancy.live.all.sample(1).first.dup
+    return if vacancy.nil?
+
+    vacancy.school = school
+    vacancy.slug = vacancy.job_title.parameterize
+    vacancy.publish_on = rand(7..14).days.ago
+    vacancy.expires_on = 5.days.ago
+    vacancy.save(validate: false)
+  end
 
   def not_authorised
     log_failed_authorisation
